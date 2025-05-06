@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculatrice Simple</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Lien vers Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .calculator {
+      max-width: 300px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f8f9fa;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    #result {
+      height: 60px;
+      font-size: 2rem;
+      text-align: right;
+      padding: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      background-color: white;
+      margin-bottom: 15px;
+    }
+
+    .btn-calc {
+      font-size: 1.2rem;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator text-center">
+  <div id="result">0</div>
+
+  <div class="row g-2">
+    <div class="col-3"><button class="btn btn-secondary w-100 btn-calc" onclick="clearResult()">C</button></div>
+    <div class="col-3"><button class="btn btn-secondary w-100 btn-calc" onclick="append('/')">/</button></div>
+    <div class="col-3"><button class="btn btn-secondary w-100 btn-calc" onclick="append('*')"></button></div>
+    <div class="col-3"><button class="btn btn-danger w-100 btn-calc" onclick="backspace('')">←</button></div>
+
+    <div class="col-3"><button class="btn btn-light w-100 btn-calc" onclick="append('7')">7</button></div>
+    <div class="col-3"><button class="btn btn-light w-100 btn-calc" onclick="append('8')">8</button></div>
+    <div class="col-3"><button class="btn btn-light w-100 btn-calc" onclick="append('9')">9</button></div>
+    <div class="col-3"><button class="btn btn-secondary w-100 btn-calc" onclick="append('-')">-</button></div>
+
+    <div class="col-3"><button class="btn btn-light w-100 btn-calc" onclick="append('4')">4</button></div>
+    <div class="col-3"><button class="btn btn-light w-100 btn-calc" onclick="append('5')">5</button></div>
+    <div class="col-3"><button class="btn btn-light w-100 btn-calc" onclick="append('6')">6</button></div>
+    <div class="col-3"><button class="btn btn-secondary w-100 btn-calc" onclick="append('+')">+</button></div>
+
+    <div class="col-3"><button class="btn btn-light w-100 btn-calc" onclick="append('1')">1</button></div>
+    <div class="col-3"><button class="btn btn-light w-100 btn-calc" onclick="append('2')">2</button></div>
+    <div class="col-3"><button class="btn btn-light w-100 btn-calc" onclick="append('3')">3</button></div>
+    <div class="col-3"><button class="btn btn-success w-100 btn-calc" onclick="calculate()">=</button></div>
+
+    <div class="col-6"><button class="btn btn-light w-100 btn-calc" onclick="append('0')">0</button></div>
+    <div class="col-6"><button class="btn btn-light w-100 btn-calc" onclick="append('.')">.</button></div>
+  </div>
+</div>
+
+<!-- Script JavaScript -->
+<script>
+  let result = document.getElementById("result");
+
+  // Ajouter un caractère
+  function append(char) {
+    if (result.textContent === "0" || result.textContent === "Erreur") {
+      result.textContent = char;
+    } else {
+      result.textContent += char;
+    }
+  }
+
+  // Calculer le résultat
+  function calculate() {
+    try {
+      result.textContent = eval(result.textContent);
+    } catch {
+      result.textContent = "Erreur";
+    }
+  }
+
+  // Supprimer tout
+  function clearResult() {
+    result.textContent = "0";
+  }
+
+  // Supprimer un seul caractère
+  function backspace() {
+    if (result.textContent.length > 1) {
+      result.textContent = result.textContent.slice(0, -1);
+    } else {
+      result.textContent = "0";
+    }
+  }
+</script>
+
+</body>
+</html>
