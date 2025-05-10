@@ -44,7 +44,7 @@ app.use(express.json());
 // Route pour recevoir un message de contact
 const nodemailer = require('nodemailer');
 
-app.post('/api/blog', async (req, res) => {
+app.post('/api//portofolioLS', async (req, res) => {
   const { nom, email, tel, message } = req.body;
 
   if (!nom || !email ||!tel || !message) {
@@ -85,7 +85,7 @@ app.post('/api/blog', async (req, res) => {
 });
 
 // Lancer le serveur
-const PORT = 3002;
+const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
 });
